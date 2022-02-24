@@ -19,13 +19,19 @@ namespace BookProject.Pages
 
         public Basket basket { get; set; }
 
-        public void OnGet()
+        public void OnGet(Basket b)
         {
+            basket = b;
         }
 
-        public void OnPost()
+        public IActionResult OnPost(int bookId)
         {
+            Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
+            basket = new Basket();
+            basket.AddItem(b, 1);
+
+            return RedirectToPage(basket);
         }
     }
 }
