@@ -18,7 +18,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Bookstore</title>
+    <title>@ViewBag.Title</title>
+    <!--<title>Bookstore</title>-->
     <!--<link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
 </head>
@@ -27,14 +28,10 @@
         <span class="navbar-brand ml-2">Book Store</span>
     </div>
     <div class="row m-1 p-1">
-        <div id="categories" class="border col-2" style="background-color:aliceblue">
-            <h4>
-                Welcome to my bookstore!
-                <br />
-                I hope you find something that you like!
-            </h4>
+        <div id="categories" class="border col-3" style="background-color:aliceblue">
+            <vc:book-category></vc:book-category>
         </div>
-        <div class="col-10">
+        <div class="col-9">
             @RenderBody()
         </div>
     </div>
