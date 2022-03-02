@@ -22,23 +22,31 @@
     <!--<title>Bookstore</title>-->
     <!--<link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
     <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">Book Store</span>
-    </div>
-    <div class="row m-1 p-1">
-        <div id="categories" class="border col-3" style="background-color:aliceblue">
-            <vc:book-category></vc:book-category>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="navbar-brand ml-2">Book Store</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
         </div>
-        <div class="col-9">
-            @RenderBody()
         </div>
-    </div>
+        <div class="row m-1 p-1">
+            <div id="categories" class="border col-3" style="background-color:aliceblue">
+                <vc:book-category></vc:book-category>
+            </div>
+            <div class="col-9">
+                @RenderBody()
+            </div>
+        </div>
 
-    <footer class="border-top footer text-muted bg-dark text-white p-2">
-        <div class="container text-center"> &copy; 2022 - BookStore</div>
-    </footer>
+        <footer class="border-top footer text-muted bg-dark text-white p-2">
+            <div class="container text-center"> &copy; 2022 - BookStore</div>
+        </footer>
 
 </body>
 </html>
