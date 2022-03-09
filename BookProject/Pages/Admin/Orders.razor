@@ -1,0 +1,42 @@
+﻿@page "/admin/orders"
+@inherits OwningComponentBase<IPaymentRepository>
+
+<OrdersTable TableTitle="Not Paid or Shipped" Payments="UncollectedPayments"
+             ButtonLabel="Shipp" OrderSelected="CollectPayment"></OrdersTable>
+
+<OrdersTable TableTitle="Paid & Shipped" Payments="CollectedPayments"
+             ButtonLabel="Reset" OrderSelected="ResetOrder"></OrdersTable>
+
+<button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh Data</button>
+
+@code {
+
+    public IPaymentRepository repo => Service;
+
+    public IEnumerable<Payment> AllPayments { get; set; }
+    public IEnumerable<Payment> UncollectedPayments { get; set; }
+    public IEnumerable<Payment> CollectedPayments { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllPayments = await repo.Payments.ToListAsync();
+        UncollectedPayments = AllPayments.Where(x => !x.Shipped);
+        CollectedPayments = AllPayments.Where(x => x.Shipped);
+    }
+
+    public void CollectPayment(int id) => UpdatePayment(id, true);
+    public void ResetOrder(int id) => UpdatePayment(id, false);
+
+    private void UpdatePayment(int id, bool paid)
+    {
+        Payment p = repo.Payments.FirstOrDefault(x => x.PaymentId == id);
+        p.Shipped = paid;
+        repo.SavePayment(p);
+    }
+
+}
