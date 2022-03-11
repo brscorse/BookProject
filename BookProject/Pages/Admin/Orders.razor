@@ -2,7 +2,7 @@
 @inherits OwningComponentBase<IPaymentRepository>
 
 <OrdersTable TableTitle="Not Paid or Shipped" Payments="UncollectedPayments"
-             ButtonLabel="Shipp" OrderSelected="CollectPayment"></OrdersTable>
+             ButtonLabel="Ship" OrderSelected="CollectPayment"></OrdersTable>
 
 <OrdersTable TableTitle="Paid & Shipped" Payments="CollectedPayments"
              ButtonLabel="Reset" OrderSelected="ResetOrder"></OrdersTable>
